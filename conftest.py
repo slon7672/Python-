@@ -5,7 +5,6 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-
 # --- Фикстура 1: Сессионная (с окном, куки для gitflic.ru) ---
 @pytest.fixture(scope="session")
 def session_driver():
@@ -73,7 +72,7 @@ def browser_edge():
     driver = webdriver.Edge(options=options)
     driver.maximize_window()  # раскрывает на весь экран
     yield driver
-    return driver
+    driver.quit()
 
 
 @pytest.fixture
@@ -87,5 +86,4 @@ def browser_firefox():
     driver.maximize_window()  # раскрывает на весь экран
 
     yield driver
-
     driver.quit()
